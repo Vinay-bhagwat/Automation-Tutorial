@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<ElementRepository>
+	<Elements>
+	<Element title="GoogleInputBox">
+	<xpath>//input[@id='lst-ib']</xpath>
+	</Element>
+	</Elements>
+	</ElementRepository>
