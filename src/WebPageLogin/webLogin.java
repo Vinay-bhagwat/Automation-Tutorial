@@ -20,7 +20,7 @@ public class webLogin extends Exception{
 	 */
 	public static void main(String[] args) throws InterruptedException, AWTException {
 		// TODO Auto-generated method stub
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\VINAY\\Desktop\\Project\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\afour\\Desktop\\Automation-Tutorial\\lib\\chromedriver.exe");
 		Robot robot=new Robot();
 		WebDriver driver=new ChromeDriver();
 		driver.manage().window().maximize();		
