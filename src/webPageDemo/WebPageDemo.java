@@ -23,8 +23,9 @@ public class WebPageDemo  extends BaseScript {
 		elementController.envSetUp();
 		String baseURL="http://www.google.com";
 	    elementController.goToURL(baseURL);	
-	    String xpath=testDataController.getXpathFromRepository("WebElementXpath.xml", "GoogleInputBox");
-	    elementController.findElementByXpathClickAndSndKeys(xpath,10,"Times of India");
+	    
+	    elementController.findElementByXpathClickAndSndKeys(testDataController.getXpathFromRepository("WebElementXpath.xml", "GoogleInputBox"),10,"Times of India");
+	    elementController.findElementByXpathAndClick(testDataController.getXpathFromRepository("WebElementXpath.xml", "GoogleSearchIcon"), 10);
 	}
 
 }
