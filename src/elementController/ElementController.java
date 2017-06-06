@@ -13,7 +13,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ElementController {
+import basePath.BasePath;
+
+public class ElementController extends BasePath {
 	public WebDriver driver=null;
 	public Robot robot=null;
 	public WebElement webElement=null;
@@ -23,7 +25,7 @@ public class ElementController {
 	public WebDriverWait wait=null;
 	
 	public void envSetUp() {
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\afour\\Desktop\\Automation-Tutorial\\lib\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",driverPath);
 		 try {
 			robot=new Robot();
 		} catch (AWTException e) {
@@ -43,7 +45,7 @@ public class ElementController {
 
 		webElement=wait.until(new ExpectedCondition<WebElement>(){
 
-			@Override
+		//	@Override
 			public WebElement apply(WebDriver d) {
 				// TODO Auto-generated method stub
 				return d.findElement(By.xpath(xpath));
@@ -57,7 +59,7 @@ public class ElementController {
 		wait = new WebDriverWait(driver, timeout);
 		webElements=wait.until(new ExpectedCondition<List<WebElement>>(){
 
-			@Override
+			//@Override
 			public List<WebElement> apply(WebDriver d) {
 				// TODO Auto-generated method stub
 				return d.findElements(By.xpath(xpath));
@@ -72,7 +74,7 @@ public class ElementController {
 		wait = new WebDriverWait(driver, timeout);
 
 		webElement=wait.until(new ExpectedCondition<WebElement>(){
-			@Override
+			//@Override
 			public WebElement apply(WebDriver d) {
 				// TODO Auto-generated method stub
 				return d.findElement(By.xpath(xpath));
@@ -86,7 +88,7 @@ public class ElementController {
 		wait = new WebDriverWait(driver, timeout);
 
 		webElement=wait.until(new ExpectedCondition<WebElement>(){
-			@Override
+		//	@Override
 			public WebElement apply(WebDriver d) {
 				// TODO Auto-generated method stub
 				return d.findElement(By.xpath(""+xpath+""));

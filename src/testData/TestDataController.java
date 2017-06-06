@@ -16,7 +16,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class TestDataController {
+import basePath.BasePath;
+
+public class TestDataController extends BasePath {
 	File file=null;
 	FileInputStream fileInput = null;
 	FileOutputStream fileOutput=null;
@@ -26,7 +28,7 @@ public class TestDataController {
 	{
 		String data=null;
 
-		file = new File(filePath);
+		file = new File(testDataPath+"\\"+filePath);
 
 
 		try {
@@ -50,19 +52,15 @@ public class TestDataController {
 	{
 		boolean isSucceed=false;
 
-		file = new File(filePath);
+		file = new File(testDataPath+"\\"+filePath);
 
 
 		try {
-			fileInput = new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		//load properties file
-		try {
+			fileOutput = new FileOutputStream(file);
 			prop.load(fileInput);
 			Object object=	prop.put(key, value);
+			prop.setProperty(key, value);
+			prop.store(fileOutput, null);
 			if(!object.equals(null)){
 				isSucceed=true;
 			}
@@ -74,10 +72,11 @@ public class TestDataController {
 
 	}
 
-	public String getXpathFromRepository(String fileName,String titleAttrb) {
+	public String getXpathFromRepository(String titleAttrb) {
 		String xpath=null;
 		try {
-			File fXmlFile = new File("C:\\Users\\afour\\Desktop\\Automation-Tutorial\\ElementRepository\\WebElementXpath.xml");
+			//File fXmlFile = new File(elementRepositoryPath+"\\"+fileName);
+			File fXmlFile = new File(elementRepositoryPath);
 			if(fXmlFile.isFile()){
 
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

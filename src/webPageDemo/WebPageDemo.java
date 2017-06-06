@@ -21,11 +21,12 @@ public class WebPageDemo  extends BaseScript {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		elementController.envSetUp();
-		String baseURL="http://www.google.com";
-	    elementController.goToURL(baseURL);	
-	    
-	    elementController.findElementByXpathClickAndSndKeys(testDataController.getXpathFromRepository("WebElementXpath.xml", "GoogleInputBox"),10,"Times of India");
-	    elementController.findElementByXpathAndClick(testDataController.getXpathFromRepository("WebElementXpath.xml", "GoogleSearchIcon"), 10);
+		String baseURL=testDataController.getData("TestData.properties","baseURL");
+		testDataController.putData("TestData.properties","textToSearch","succeded");
+		elementController.goToURL(baseURL);	
+		elementController.findElementByXpathClickAndSndKeys(testDataController.getXpathFromRepository("GoogleInputBox"),10,testDataController.getData("TestData.properties","textToSearch"));
+		elementController.findElementByXpathAndClick(testDataController.getXpathFromRepository("GoogleSearchIcon"), 10);
+		
 	}
 
 }
