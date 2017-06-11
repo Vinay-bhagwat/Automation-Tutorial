@@ -1,4 +1,4 @@
-package testData;
+package testdata;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +16,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import basePath.BasePath;
+import basepath.BasePath;
 
 public class TestDataController extends BasePath {
 	File file=null;
@@ -28,7 +28,7 @@ public class TestDataController extends BasePath {
 	{
 		String data=null;
 
-		file = new File(testDataPath+"\\"+filePath);
+		file = new File(filePath);
 
 
 		try {
@@ -72,11 +72,11 @@ public class TestDataController extends BasePath {
 
 	}
 
-	public String getXpathFromRepository(String titleAttrb) {
+	public String getXpathFromRepository(String xpathRepoFile,String titleAttrb) {
 		String xpath=null;
 		try {
 			//File fXmlFile = new File(elementRepositoryPath+"\\"+fileName);
-			File fXmlFile = new File(elementRepositoryPath);
+			File fXmlFile = new File(xpathRepoFile);
 			if(fXmlFile.isFile()){
 
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -113,6 +113,11 @@ return xpath;
 		}
 		return xpath;
 
+	}
+	
+public String dynamicXpathFromRepository(String xpathRepoFile,String tagName,String attributeName){
+		
+		return getXpathFromRepository(xpathRepoFile,tagName).replace("#", attributeName);
 	}
 
 }

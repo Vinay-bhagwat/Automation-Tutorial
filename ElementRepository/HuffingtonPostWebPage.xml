@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<ElementRepository>
+	
+	<Elements>
+	
+	<Element title="HuffingtonMenu">
+	<xpath>//div[@class="nav__inner"]//a[contains(text(),"#")]</xpath>
+	</Element>
+	
+	<Element title="HuffingtonSubMenu">
+	<xpath>//div[@class="dropdown__column__row dropdown__column__row--section"] [contains(text(),"#")]</xpath>
+	</Element>
+	</Elements>
+	
+	</ElementRepository>

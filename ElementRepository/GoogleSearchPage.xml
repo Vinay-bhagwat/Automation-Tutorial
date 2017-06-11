@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<ElementRepository>
+	
+	<Elements>
+	
+	<Element title="GoogleInputBox">
+	<xpath>//input[@id='lst-ib']</xpath>
+	</Element>
+	
+	<Element title="GoogleSearchIcon">
+	<xpath>//button[@value="Search"]</xpath>
+	</Element>
+	
+	<Element title="GoogleSearchLinks">
+	<xpath>//div[@id="res"]//a[contains(text(),"#")]</xpath>
+	</Element>
+	</Elements>
+	
+	</ElementRepository>

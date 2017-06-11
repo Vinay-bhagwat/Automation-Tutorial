@@ -1,22 +1,25 @@
-package elementController;
+package elementcontroller;
 
 
-import java.awt.AWTException;
 import java.awt.Robot;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import basePath.BasePath;
+import basepath.BasePath;
 
 public class ElementController extends BasePath {
+	public DesiredCapabilities capabilities=null;
 	public WebDriver driver=null;
 	public Robot robot=null;
 	public WebElement webElement=null;
@@ -24,6 +27,45 @@ public class ElementController extends BasePath {
 	public List<WebElement>webElements=null;
 	public ElementController elementController=null;
 	public WebDriverWait wait=null;
+	public Select dropdown=null;
+	public ElementController() {
+		envStrtSetUp();
+	}
+
+
+	/*@Override
+	protected
+	void finalize() throws Throwable {
+		driver.quit();
+		System.out.println("Destructor called");
+	}
+*/
+
+	public void envStrtSetUp() {
+		//Chrome Driver path set to System properties
+		System.setProperty("Dlog4j.configurationFile","file:/path/to/file/log4j2.xml");
+		System.setProperty("webdriver.chrome.driver",driverPath);
+		//Code for Browser cache and cookie cleanup
+
+		capabilities = DesiredCapabilities.chrome();
+		capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+		ChromeOptions opts = new ChromeOptions();
+		opts.addArguments("start-maximized");
+		capabilities.setCapability(ChromeOptions.CAPABILITY, opts);
+
+		driver=new ChromeDriver();
+		driver.manage().deleteAllCookies();
+		//Browser window set to fullscreen
+		driver.manage().window().maximize();	
+	}
+
+	public void envEndSetUp()
+	{
+		driver.quit();
+	}
+	public void goToURL(String url){
+		driver.get(url);
+	}
 
 
 	public WebElement waitForElementToAppear(final String xpath,int timeout){
@@ -37,29 +79,13 @@ public class ElementController extends BasePath {
 		});
 		return webElement;
 	}
-	public void envSetUp() {
-		System.setProperty("webdriver.chrome.driver",driverPath);
-		try {
-			robot=new Robot();
-		} catch (AWTException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver=new ChromeDriver();
-		driver.manage().window().maximize();	
-	}
-
-	public void goToURL(String url){
-		driver.get(url);
-	}
-
 	public WebElement findElementByXpath(String xpath,int timeout){
 
 		return waitForElementToAppear(xpath,timeout);
 
 	}
 	public List<WebElement> findElementsByXpath(final String xpath,int timeout){
-		wait = new WebDriverWait(driver, timeout);
+		wait = new WebDriverWait(driver, timeout);;
 		webElements=wait.until(new ExpectedCondition<List<WebElement>>(){
 
 			//@Override
@@ -91,6 +117,21 @@ public class ElementController extends BasePath {
 
 		actions.moveToElement(waitForElementToAppear(mainMenu,timeout)).build().perform();
 
+	try {
+		Thread.sleep(5000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		waitForElementToAppear(subMenu,timeout).click();
 
+
+
+	}
+
+	public void selectDropdownOption(String xpath,int optionIndex,int timeout){
+		dropdown = new Select(waitForElementToAppear(xpath,timeout));
+		
+		dropdown.selectByIndex(optionIndex);
 	}
 }

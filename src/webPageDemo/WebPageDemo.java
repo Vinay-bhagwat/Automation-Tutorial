@@ -1,4 +1,4 @@
-package webPageDemo;
+package webpagedemo;
 
 
 import java.awt.AWTException;
@@ -8,7 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import envSetup.BaseScript;
+import envsetup.BaseScript;
 public class WebPageDemo  extends BaseScript {
 	/**
 	 * @param args
@@ -20,12 +20,13 @@ public class WebPageDemo  extends BaseScript {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		elementController.envSetUp();
+		
 		String baseURL=testDataController.getData("TestData.properties","baseURL");
 		testDataController.putData("TestData.properties","textToSearch","Vinay Bhagwat github");
 		elementController.goToURL(baseURL);	
-		elementController.findElementByXpathClickAndSndKeys(testDataController.getXpathFromRepository("GoogleInputBox"),10,testDataController.getData("TestData.properties","textToSearch"));
-		elementController.findElementByXpathAndClick(testDataController.getXpathFromRepository("GoogleSearchIcon"), 10);
+//		elementController.findElementByXpathClickAndSndKeys(testDataController.getXpathFromRepository("GoogleInputBox"),10,testDataController.getData("TestData.properties","textToSearch"));
+//		elementController.findElementByXpathAndClick(testDataController.getXpathFromRepository("GoogleSearchIcon"), 10);
+		elementController.envEndSetUp();
 		
 	}
 
