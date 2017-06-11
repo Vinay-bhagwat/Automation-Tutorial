@@ -4,6 +4,8 @@ package elementcontroller;
 import java.awt.Robot;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,9 +18,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import envsetup.BaseScript;
 import basepath.BasePath;
 
-public class ElementController extends BasePath {
+public class ElementController extends BaseScript {
 	public DesiredCapabilities capabilities=null;
 	public WebDriver driver=null;
 	public Robot robot=null;
@@ -29,6 +32,7 @@ public class ElementController extends BasePath {
 	public WebDriverWait wait=null;
 	public Select dropdown=null;
 	public ElementController() {
+		DOMConfigurator.configure("log4j.xml");
 		envStrtSetUp();
 	}
 
@@ -42,8 +46,9 @@ public class ElementController extends BasePath {
 */
 
 	public void envStrtSetUp() {
+		DOMConfigurator.configure("log4j.xml");
 		//Chrome Driver path set to System properties
-		System.setProperty("Dlog4j.configurationFile","file:/path/to/file/log4j2.xml");
+		
 		System.setProperty("webdriver.chrome.driver",driverPath);
 		//Code for Browser cache and cookie cleanup
 
@@ -54,6 +59,8 @@ public class ElementController extends BasePath {
 		capabilities.setCapability(ChromeOptions.CAPABILITY, opts);
 
 		driver=new ChromeDriver();
+		
+
 		driver.manage().deleteAllCookies();
 		//Browser window set to fullscreen
 		driver.manage().window().maximize();	
@@ -62,6 +69,7 @@ public class ElementController extends BasePath {
 	public void envEndSetUp()
 	{
 		driver.quit();
+		Log.info("Browser closed successfully");
 	}
 	public void goToURL(String url){
 		driver.get(url);
@@ -116,7 +124,7 @@ public class ElementController extends BasePath {
 		actions=new Actions(driver);
 
 		actions.moveToElement(waitForElementToAppear(mainMenu,timeout)).build().perform();
-
+		
 	try {
 		Thread.sleep(5000);
 	} catch (InterruptedException e) {
@@ -133,5 +141,7 @@ public class ElementController extends BasePath {
 		dropdown = new Select(waitForElementToAppear(xpath,timeout));
 		
 		dropdown.selectByIndex(optionIndex);
+		
+		
 	}
 }

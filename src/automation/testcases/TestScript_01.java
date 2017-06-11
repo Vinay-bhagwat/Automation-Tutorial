@@ -11,9 +11,9 @@ public class TestScript_01 extends BaseScript {
 
 	public static void main(String[] args) {
 		try{
-			DOMConfigurator.configure("log4j.xml");
+			
 
-		    Log.info("New driver instantiated");
+		    
 
 			List<WebElement> searchResult =googleSearchPage.googleSearch(testDataController.getData(testDataPath+"GoogleSearchPage.properties", "textToSearch"));
 			for(WebElement searchList :searchResult){Log.info("Google search result ->  "+searchList.getText());}

@@ -16,9 +16,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import envsetup.BaseScript;
 import basepath.BasePath;
 
-public class TestDataController extends BasePath {
+public class TestDataController extends BaseScript {
 	File file=null;
 	FileInputStream fileInput = null;
 	FileOutputStream fileOutput=null;
@@ -33,6 +34,7 @@ public class TestDataController extends BasePath {
 
 		try {
 			fileInput = new FileInputStream(file);
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -41,6 +43,7 @@ public class TestDataController extends BasePath {
 		try {
 			prop.load(fileInput);
 			data=prop.getProperty(key);
+			Log.info(key+"="+data+" value fetched from "+filePath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -61,6 +64,7 @@ public class TestDataController extends BasePath {
 			Object object=	prop.put(key, value);
 			prop.setProperty(key, value);
 			prop.store(fileOutput, null);
+			Log.info(key+"="+value+" value stored successfully in "+filePath);
 			if(!object.equals(null)){
 				isSucceed=true;
 			}

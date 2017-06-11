@@ -18,9 +18,11 @@ public class GoogleSearchPage extends BaseScript {
 		String assertionInfo="Failed to search "+searchQuery+" on Google";
 		boolean isSearched=true;
 		elementController.goToURL(testDataController.getData(dataFilePath,"baseURL"));
-		
+		Log.info("Google.com web page opened successfully");
+
 		elementController.findElementByXpathClickAndSndKeys(testDataController.getXpathFromRepository(xpathFileRepo,"GoogleInputBox"),10,searchQuery);
-		
+		Log.info(searchQuery+" query searched on google web page");
+
 		elementController.findElementByXpathAndClick(testDataController.getXpathFromRepository(xpathFileRepo,"GoogleSearchIcon"), 10);
 		
 		try {
