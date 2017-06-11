@@ -11,6 +11,6 @@
 	<classpathentry kind="lib" path="lib/testng-6.9.4.jar"/>
 	<classpathentry kind="lib" path="lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
-	<classpathentry kind="lib" path="C:/Users/VINAY/Desktop/AUTOMATION-FRAMEWORK/Automation-Tutorial/log4j-1.2.17/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/VINAY/Desktop/AUTOMATION-FRAMEWORK/Automation-Tutorial/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
